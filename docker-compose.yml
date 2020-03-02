@@ -4,7 +4,7 @@ services:
 
   influxdb:
     container_name: influxdb
-    image: "influxdb:latest"
+    image: influxdb:latest
     restart: unless-stopped
     ports:
       - 8086:8086
@@ -21,7 +21,7 @@ services:
     image: grafana/grafana:latest
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - 3000:3000
     volumes:
       - ./volumes/grafana:/var/lib/grafana
       - ./volumes/grafana/grafana-provisioning/:/etc/grafana/provisioning
@@ -40,6 +40,7 @@ services:
     volumes:
       - ./volumes/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./volumes/nginx/error.log:/etc/nginx/error_log.log
-      - ./volumes/nginx/html:/usr/share/nginx/html
+      - ./volumes/nginx/html/:/usr/share/nginx/html
+      - ./volumes/nginx/cache/:/usr/share/nginx/cache
       - /etc/letsencrypt/:/etc/letsencrypt/
-    
+
